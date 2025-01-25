@@ -1,11 +1,8 @@
 import './App.css'
+import { UseFetchPage } from './hooks/useFetch/UseFetchPage'
 
 function App() {
-  return (
-    <div>
-      <h2>Halo</h2>
-    </div>
-  )
+  return <UseFetchPage />
 }
 
 export default App
