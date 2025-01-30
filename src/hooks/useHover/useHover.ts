@@ -13,16 +13,15 @@ export function useHover<T extends HTMLElement = HTMLElement>() {
   }, [])
 
   useEffect(() => {
-    const abortController = new AbortController()
-
     const el = ref.current
-    el?.addEventListener('mouseenter', handleMouseEnter, { signal: abortController.signal })
-    el?.addEventListener('mouseleave', handleMouseLeave, { signal: abortController.signal })
+    el?.addEventListener('mouseenter', handleMouseEnter)
+    el?.addEventListener('mouseleave', handleMouseLeave)
 
     return () => {
-      abortController.abort()
+      el?.removeEventListener('mouseenter', handleMouseEnter)
+      el?.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [handleMouseEnter, handleMouseLeave, ref])
+  }, [handleMouseEnter, handleMouseLeave])
 
   return { hovered, ref }
 }
